@@ -1,3 +1,4 @@
+from validator.dict_validator import DictValidator
 from validator.int_validator import IntValidator
 from validator.list_validator import ListValidator
 from validator.string_validator import StringValidator
@@ -12,3 +13,6 @@ class Validator:
 
     def list(self):
         return ListValidator()
+
+    def dict(self):
+        return DictValidator()
