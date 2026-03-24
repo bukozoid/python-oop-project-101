@@ -10,5 +10,5 @@ class BaseValidator:
 
     def _validate_required(self):
         if self._is_valid and self._required:
-            self._is_valid = bool(self._data)
+            self._is_valid = self._data is not None
         return self
