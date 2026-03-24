@@ -29,7 +29,6 @@ class TestStringSchema:
     def test_required_makes_none_invalid(self, validator):
         schema = validator.string()
         schema.required()
-        print("AA", schema._required)
         assert schema.is_valid(None) is False
 
     def test_required_makes_empty_string_invalid(self, validator):
@@ -66,3 +65,7 @@ class TestMinLenValidator:
     def test_min_len_override(self, validator):
         result = validator.string().min_len(10).min_len(4).is_valid("Hexlet")
         assert result is True
+
+    def test__min_len_sequental(self, validator):
+        assert validator.string().min_len(10).is_valid("Hexlet") is False
+        assert validator.string().min_len(3).is_valid("Hexlet") is True
