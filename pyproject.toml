@@ -1,0 +1,14 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "hexlet-code"
+version = "0.0.1"
+description = "Test project for PYhton OOP"
+
+[tool.hatch.build.targets.wheel]
+packages = ["validator"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
