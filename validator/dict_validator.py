@@ -2,8 +2,8 @@ from validator.base_validator import BaseValidator
 
 
 class DictValidator(BaseValidator):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, ext_validators=None):
+        super().__init__(ext_validators)
         self._shape = {}
         self._data = {}
 
@@ -20,7 +20,6 @@ class DictValidator(BaseValidator):
                         break
 
     def is_valid(self, value: dict):
-        self._data = value
-        self._is_valid = True
+        self._is_valid = super().is_valid(value)
         self._validate_required()._validate_shape()
         return self._is_valid

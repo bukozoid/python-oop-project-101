@@ -2,8 +2,8 @@ from validator.base_validator import BaseValidator
 
 
 class ListValidator(BaseValidator):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, ext_validators=None):
+        super().__init__(ext_validators)
         self._size = None
 
     def sizeof(self, value):
@@ -15,7 +15,6 @@ class ListValidator(BaseValidator):
             self._is_valid = len(self._data) == self._size
 
     def is_valid(self, value):
-        self._data = value
-        self._is_valid = True
+        self._is_valid = super().is_valid(value)
         self._validate_required()._validate_size()
         return self._is_valid

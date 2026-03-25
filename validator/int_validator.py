@@ -2,8 +2,8 @@ from validator.base_validator import BaseValidator
 
 
 class IntValidator(BaseValidator):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, ext_validators=None):
+        super().__init__(ext_validators)
         self._range = None
         self._positive = None
 
@@ -23,9 +23,13 @@ class IntValidator(BaseValidator):
     def _validate_range(self):
         if self._is_valid and self._range:
             self._is_valid = self._range[0] <= int(self._data) <= self._range[1]
+        return self
 
     def is_valid(self, value):
+        self._is_valid = super().is_valid(value)
         self._data = value
-        self._is_valid = True
-        self._validate_required()._validate_positive()._validate_range()
+        try:
+            self._validate_required()._validate_positive()._validate_range()
+        except (ValueError, TypeError):
+            self._is_valid = False
         return self._is_valid

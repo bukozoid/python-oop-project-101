@@ -2,8 +2,8 @@ from validator.base_validator import BaseValidator
 
 
 class StringValidator(BaseValidator):
-    def __init__(self):
-        super().__init__()
+    def __init__(self, ext_validators=None):
+        super().__init__(ext_validators)
         self._contains = None
         self._min_len = None
 
@@ -33,7 +33,6 @@ class StringValidator(BaseValidator):
         return self
 
     def is_valid(self, value):
-        self._data = value
-        self._is_valid = True
+        self._is_valid = super().is_valid(value)
         self._validate_contains()._validate_min_len()._validate_required()
         return self._is_valid
