@@ -1,6 +1,5 @@
-import pytest
-
 from validator import Validator
+import pytest
 
 
 @pytest.fixture

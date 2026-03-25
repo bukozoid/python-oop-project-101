@@ -6,7 +6,8 @@ from validator.string_validator import StringValidator
 
 class Validator:
     def __init__(self):
-        self._ext_validators = {"string": {}, "number": {}, "list": {}, "dict": {}}
+        self._ext_validators = {
+            "string": {}, "number": {}, "list": {}, "dict": {}}
 
     def string(self):
         return StringValidator(self._ext_validators["string"])
