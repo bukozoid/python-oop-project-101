@@ -20,6 +20,6 @@ class DictValidator(BaseValidator):
                         break
 
     def is_valid(self, value: dict):
-        self._is_valid = super().is_valid(value)
-        self._validate_required()._validate_shape()
+        if super().is_valid(value):
+            self._validate_shape()
         return self._is_valid

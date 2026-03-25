@@ -15,6 +15,6 @@ class ListValidator(BaseValidator):
             self._is_valid = len(self._data) == self._size
 
     def is_valid(self, value):
-        self._is_valid = super().is_valid(value)
-        self._validate_required()._validate_size()
+        if super().is_valid(value):
+            self._validate_size()
         return self._is_valid

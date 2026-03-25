@@ -33,6 +33,6 @@ class StringValidator(BaseValidator):
         return self
 
     def is_valid(self, value):
-        self._is_valid = super().is_valid(value)
-        self._validate_contains()._validate_min_len()._validate_required()
+        if super().is_valid(value):
+            self._validate_contains()._validate_min_len()
         return self._is_valid
