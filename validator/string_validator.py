@@ -13,7 +13,10 @@ class StringValidator(BaseValidator):
 
     def _validate_contains(self):
         if self._is_valid and self._contains is not None:
-            self._is_valid = self._data is not None and self._contains in self._data
+            self._is_valid = (
+                self._data is not None
+                and self._contains in self._data
+            )
         return self
 
     def min_len(self, lenght: int):
